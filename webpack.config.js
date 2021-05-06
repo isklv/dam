@@ -6,8 +6,6 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
 
-const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin")
-
 
 //console.log("node env", process.env.NODE_ENV);
 
@@ -86,13 +84,6 @@ module.exports = (env) => {
                 "process.env.COMMERCIAL_MODE" : JSON.stringify(process.env.COMMERCIAL_MODE)
             }),
             new CompressionPlugin(),
-            new GoogleFontsPlugin({
-                fonts: [
-                    { family: "Roboto", variants: ["100", "300", "400", "500", "700"], display: "swap" }
-                ],
-                outputDir: "/dist/",
-                /* ...options */
-            })
         ],
         devtool: isProduction ? "source-map" : "inline-source-map",
         devServer: {
