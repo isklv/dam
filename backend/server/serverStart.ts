@@ -11,7 +11,7 @@ const serverStart = async() => {
 
     const port = process.env.PORT || 8080;
     
-    server.listen(port, process.env.URL, () => {
+    server.listen(port, () => {
         console.log("Server Running On Port:", port);
     })
 }
