@@ -13,9 +13,9 @@ deploy to test:
     variables:
         NODE_ENV: test
         DB_TYPE: fs
-        DOCKER: true
-        DISABLE_EMAIL_VERIFICATION: true
-        DISABLE_STORAGE: true
+        DOCKER: "true"
+        DISABLE_EMAIL_VERIFICATION: "true"
+        DISABLE_STORAGE: "true"
         MONGODB_URL: $TEST_MONGO_URI
         REMOTE_URL: http://$TEST_HOST:$PORT
         PASSWORD_ACCESS: ca9cfc3070a69fcca8980c16064bfbd1fa118adc64ac1496ea8beca8c68dcecd
@@ -40,9 +40,9 @@ deploy to prod:
         REMOTE_URL: https://api-app2.sovcombank.ru/v2/app
         NODE_ENV: production
         DB_TYPE: fs
-        DOCKER: true
-        DISABLE_EMAIL_VERIFICATION: true
-        DISABLE_STORAGE: true
+        DOCKER: "true"
+        DISABLE_EMAIL_VERIFICATION: "true"
+        DISABLE_STORAGE: "true"
         MONGODB_URL: $MONGO_URI
         PASSWORD_ACCESS: 3b0bc404c6c9e2e42aca5124ceac7fabe4c510468488817c6673c225eb74e44d
         PASSWORD_REFRESH: 9107ca67682b1351fc6999a607ac24ea630f1b74f3377806ac369a6e27915ef0
