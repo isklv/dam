@@ -2,14 +2,12 @@ import User from "../../dist/models/user";
 import mongoose from "../../dist/db/mongoose";
 const conn = mongoose.connection;
 const createUser = require("../fixtures/createUser");
-import servers from "../../dist/server/server";
+import server from "../../dist/server/server";
 const request = require("supertest");
 import env from "../../dist/enviroment/env";
 const session = require("supertest-session");
 const loginUser = require("../fixtures/loginUser");
 const createUserNotEmailVerified = require("../fixtures/createUserNotEmailVerified");
-
-const {server, serverHttps} = servers;
 
 const app = server;
 

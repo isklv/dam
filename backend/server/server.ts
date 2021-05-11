@@ -3,15 +3,12 @@ import path from "path";
 import userRouter from "../express-routers/user";
 import fileRouter from "../express-routers/file";
 import folderRouter from "../express-routers/folder";
-import storageRouter from "../express-routers/storage";
 import googleFileRouter from "../express-routers/googleFile";
 import personalFileRouter from "../express-routers/personalFile";
 import googleFolderRouter from "../express-routers/googleFolder";
 import userGoogleRouter from "../express-routers/userGoogle";
 import userPersonalRouter from "../express-routers/userPersonal";
 import bodyParser from "body-parser";
-import https from "https";
-import fs from "fs";
 import helmet from "helmet";
 import busboy from "connect-busboy";
 import compression from "compression";
@@ -23,26 +20,7 @@ import env from "../enviroment/env";
 const app = express();
 const publicPath = path.join(__dirname, "..", "..", "public");
 
-let server: any;
-let serverHttps: any;
-
-if (process.env.SSL === 'true') {
-    
-    const cert = fs.readFileSync("certificate.crt")
-    const ca = fs.readFileSync("certificate.ca-bundle");
-    const key = fs.readFileSync("certificate.key");
-
-
-    const options = {
-        cert,
-        ca,
-        key
-    }
-
-    serverHttps = https.createServer( options, app );
-}
-
-server = http.createServer(app);
+const server = http.createServer(app);
 
 require("../db/mongoose");
 
@@ -60,7 +38,7 @@ app.use(busboy({
     
 }));
 
-app.use(userRouter, fileRouter, folderRouter, storageRouter, googleFileRouter, personalFileRouter, googleFolderRouter, userPersonalRouter, userGoogleRouter);
+app.use(userRouter, fileRouter, folderRouter, googleFileRouter, personalFileRouter, googleFolderRouter, userPersonalRouter, userGoogleRouter);
 
 
 //const nodeMode = process.env.NODE_ENV ? "Production" : "Development/Testing";
@@ -74,4 +52,4 @@ app.get("*", (_: Request, res: Response) => {
 })
 
 
-export default {server, serverHttps};
+export default server;

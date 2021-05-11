@@ -1,24 +1,25 @@
-version: '3'
+version: '2'
 
 services:
-  app:
-    container_name: mydrive-node
+  dam:
+    container_name: dam
     restart: always
-    build: .
+    build: 
+      context: .
+      args: 
+        - PROXY
+        - NO_PROXY
+        - NPM_REGISTRY
+    environment: 
+      - NODE_ENV
+      - DB_TYPE
+      - DOCKER
+      - DISABLE_EMAIL_VERIFICATION
+      - DISABLE_STORAGE
+      - MONGODB_URL
+      - REMOTE_URL
+      - PASSWORD_ACCESS
+      - PASSWORD_REFRESH
+      - PASSWORD_COOKIE
     ports: 
-      - '3000:3000'
-      - '8080:8080'
-    env_file:
-      - docker-variables.env
-    links:
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - '27017:27017'
-    volumes:
-      - 'mongodb_data_volume:/data/db'
-volumes:
-      mongodb_data_volume:
-        external: true
+      - $PORT:8080

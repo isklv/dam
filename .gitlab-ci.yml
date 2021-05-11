@@ -1,0 +1,59 @@
+image: node:lts-alpine
+
+variables:
+    PORT: 4029
+
+stages:
+    - deploy
+
+deploy to test:
+    stage: deploy
+    tags:
+        - urt-web-app1-for-web-gr
+    variables:
+        NODE_ENV: test
+        DB_TYPE: fs
+        DOCKER: true
+        DISABLE_EMAIL_VERIFICATION: true
+        DISABLE_STORAGE: true
+        MONGODB_URL: $TEST_MONGO_URI
+        REMOTE_URL: http://$TEST_HOST:$PORT
+        PASSWORD_ACCESS: ca9cfc3070a69fcca8980c16064bfbd1fa118adc64ac1496ea8beca8c68dcecd
+        PASSWORD_REFRESH: a8f90dc1cdb5333a4bd6ba92462c346b6f79708e9d245579a366a912a3627bc1
+        PASSWORD_COOKIE: 30bbf48416e35af8902faf239aecf6b367262899352fed75976694d18c042cf2
+    before_script:
+        - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    script:
+        - docker-compose up -d --no-deps --build
+    after_script:
+        - docker system prune -af
+        - docker stats --no-stream
+        - docker logout $CI_REGISTRY
+    only:
+        - test
+
+deploy to prod:
+    stage: deploy
+    tags:
+        - uhp-web-app1-for-web-gr
+    variables:
+        REMOTE_URL: https://api-app2.sovcombank.ru/v2/app
+        NODE_ENV: production
+        DB_TYPE: fs
+        DOCKER: true
+        DISABLE_EMAIL_VERIFICATION: true
+        DISABLE_STORAGE: true
+        MONGODB_URL: $MONGO_URI
+        PASSWORD_ACCESS: 3b0bc404c6c9e2e42aca5124ceac7fabe4c510468488817c6673c225eb74e44d
+        PASSWORD_REFRESH: 9107ca67682b1351fc6999a607ac24ea630f1b74f3377806ac369a6e27915ef0
+        PASSWORD_COOKIE: 3dfa1efde677748a589094cd71a0fd1eaa284bab7896fc9cc7b26f6f8e12fc4d
+    before_script:
+        - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    script:
+        - docker-compose up -d --no-deps --build
+    after_script:
+        - docker system prune -af
+        - docker stats --no-stream
+        - docker logout $CI_REGISTRY
+    only:
+        - master

@@ -11,7 +11,7 @@ import createThumbnail from "../../dist/services/ChunkService/utils/createThumba
 const request = require("supertest");
 const jwt = require("jsonwebtoken");
 const ObjectID = require('mongodb').ObjectID
-import servers from "../../dist/server/server";
+import server from "../../dist/server/server";
 import Folder from "../../dist/models/folder";
 const temp = require("temp").track();
 const binaryPhraser = require("superagent-binary-parser");
@@ -19,8 +19,6 @@ const session = require("supertest-session");
 const loginUser = require("../fixtures/loginUser");
 const createUserNotEmailVerified = require("../fixtures/createUserNotEmailVerified");
 const Thumbnail = require("../../dist/models/thumbnail");
-
-const {server, serverHttps} = servers;
 
 const app = server;
 
