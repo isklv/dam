@@ -19,3 +19,7 @@ package-lock.json
 dist/
 rds-combined-ca-bundle.pem
 docker-variables.env
+
+# files folder
+files/*
+!files/.gitkeep
