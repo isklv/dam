@@ -25,7 +25,7 @@ services:
     ports: 
       - $PORT:8080
     volumes:
-      - $FS_DIRECTORY:/files
+      - ./files/:$FS_DIRECTORY
     mem_limit: 1g
     logging: 
       driver: 'fluentd'
