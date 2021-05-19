@@ -9,7 +9,7 @@ ENV HTTPS_PROXY $PROXY
 
 RUN apk add --update --no-cache g++ gcc libgcc libstdc++ linux-headers make python
 
-RUN npm config set @ecom:registry $NPM_REGISTRY/npm-all/
+RUN npm config set registry $NPM_REGISTRY/npm-all/
 
 WORKDIR /usr/src/app
 
