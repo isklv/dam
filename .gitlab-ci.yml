@@ -15,7 +15,7 @@ deploy to test:
         NODE_ENV: test
         DB_TYPE: fs
         DOCKER: "true"
-        FS_DIRECTORY: "files/"
+        FS_DIRECTORY: "./files/"
         DISABLE_EMAIL_VERIFICATION: "true"
         DISABLE_STORAGE: "true"
         MONGODB_URL: $TEST_MONGO_URI
@@ -43,7 +43,7 @@ deploy to prod:
         NODE_ENV: production
         DB_TYPE: fs
         DOCKER: "true"
-        FS_DIRECTORY: "files/"
+        FS_DIRECTORY: "./files/"
         DISABLE_EMAIL_VERIFICATION: "true"
         DISABLE_STORAGE: "true"
         MONGODB_URL: $MONGO_URI
