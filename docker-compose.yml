@@ -25,7 +25,7 @@ services:
     ports: 
       - $PORT:8080
     volumes:
-      - ./files/:$FS_DIRECTORY
+      - dam-vol:$FS_DIRECTORY
     mem_limit: 1g
     logging: 
       driver: 'fluentd'
@@ -35,3 +35,5 @@ services:
         tag: docker.dam
     network_mode: bridge
     restart: always
+volumes: 
+  dam-vol:
