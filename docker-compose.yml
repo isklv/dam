@@ -9,6 +9,7 @@ services:
         - PROXY
         - NO_PROXY
         - NPM_REGISTRY
+        - REMOTE_URL
     environment:
       - HOST
       - NODE_ENV
@@ -17,8 +18,7 @@ services:
       - FS_DIRECTORY
       - DISABLE_EMAIL_VERIFICATION
       - DISABLE_STORAGE
-      - MONGODB_URL
-      - REMOTE_URL
+      - MONGODB_URL 
       - PASSWORD_ACCESS
       - PASSWORD_REFRESH
       - PASSWORD_COOKIE
