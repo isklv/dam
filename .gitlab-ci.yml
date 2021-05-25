@@ -39,7 +39,7 @@ deploy to prod:
     tags:
         - uhp-web-app1-for-web-gr
     variables:
-        REMOTE_URL: https://api-app2.sovcombank.ru/v2/app # need to set to prod url
+        REMOTE_URL: http://$HOST:$PORT # need to set to prod url
         NODE_ENV: production
         DB_TYPE: fs
         DOCKER: "true"
