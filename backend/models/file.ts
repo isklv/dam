@@ -1,18 +1,23 @@
-import mongoose, {Document} from "mongoose";
+import mongoose, { Document } from "mongoose";
 import { Binary, ObjectID } from "mongodb";
 
 const fileSchema = new mongoose.Schema({
-    
+
     length: {
         type: Number,
         required: true,
     },
     chunkSize: {
-        type: Number, 
+        type: Number,
     },
     uploadDate: {
         type: Date,
         required: true
+    },
+    expiredAt: {
+        type: Date,
+        required: false,
+        default: null
     },
     filename: {
         type: String,
@@ -58,7 +63,7 @@ const fileSchema = new mongoose.Schema({
         },
         required: true
     }
-    
+
 })
 
 export interface FileInterface extends Document {
@@ -66,7 +71,7 @@ export interface FileInterface extends Document {
     chunkSize: number,
     uploadDate: string,
     filename: string,
-    lastErrorObject: {updatedExisting: any}
+    lastErrorObject: { updatedExisting: any }
     metadata: {
         owner: string | ObjectID,
         parent: string,
@@ -80,7 +85,7 @@ export interface FileInterface extends Document {
         link?: string,
         filePath?: string,
         s3ID?: string,
-        personalFile? : boolean
+        personalFile?: boolean
     }
 }
 
